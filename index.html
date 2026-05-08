@@ -1,0 +1,697 @@
+<!--
+  =====================================================
+  GITHUB PAGES DEPLOYMENT — 3 STEPS
+  =====================================================
+  1. Create a new GitHub repository (e.g. "waters-pitch")
+  2. Upload this file as "index.html" in the repository root
+  3. Go to Settings → Pages → Source: "Deploy from a branch"
+     → Branch: main → Folder: / (root) → Save
+     Your site will be live at: https://[your-username].github.io/waters-pitch/
+  =====================================================
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Deepthi Rajesh — For BD — Becton, Dickinson and Company</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0a1628;
+    --navy-mid: #122040;
+    --navy-light: #1c3260;
+    --accent: #3b82f6;
+    --accent-glow: #60a5fa;
+    --gold: #f5a623;
+    --gold-light: #fbbf24;
+    --white: #f8f9fc;
+    --muted: #8fa3c0;
+    --border: rgba(59,130,246,0.18);
+    --serif: 'Playfair Display', Georgia, serif;
+    --sans: 'DM Sans', sans-serif;
+    --mono: 'DM Mono', monospace;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--navy);
+    color: var(--white);
+    font-family: var(--sans);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.1rem 3rem;
+    background: rgba(10,22,40,0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { font-family: var(--mono); font-size: 13px; color: var(--accent-glow); letter-spacing: 0.08em; }
+  .nav-links { display: flex; gap: 2rem; }
+  .nav-links a { color: var(--muted); text-decoration: none; font-size: 13px; letter-spacing: 0.04em; transition: color 0.2s; }
+  .nav-links a:hover { color: var(--white); }
+
+  /* ── HERO ── */
+  .hero {
+    min-height: 100vh;
+    display: flex; align-items: center;
+    padding: 8rem 3rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero-grid {
+    position: absolute; inset: 0;
+    background-image:
+      linear-gradient(rgba(59,130,246,0.05) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(59,130,246,0.05) 1px, transparent 1px);
+    background-size: 60px 60px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 40%, black 40%, transparent 100%);
+  }
+  .hero-orb {
+    position: absolute; top: -10%; right: -5%;
+    width: 600px; height: 600px;
+    background: radial-gradient(circle, rgba(59,130,246,0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+  }
+  .hero-content { position: relative; max-width: 900px; }
+  .hero-eyebrow {
+    font-family: var(--mono); font-size: 12px; letter-spacing: 0.15em;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.7s 0.1s forwards;
+  }
+  .hero-title {
+    font-family: var(--serif); font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 700; line-height: 1.15;
+    margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.7s 0.25s forwards;
+  }
+  .hero-title em { font-style: italic; color: var(--accent-glow); }
+  .hero-sub {
+    font-size: 1.1rem; color: var(--muted); max-width: 620px;
+    margin-bottom: 2.5rem;
+    opacity: 0; animation: fadeUp 0.7s 0.4s forwards;
+  }
+  .hero-sub strong { color: var(--white); font-weight: 500; }
+  .cta-row { display: flex; gap: 1rem; flex-wrap: wrap; opacity: 0; animation: fadeUp 0.7s 0.55s forwards; }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    background: var(--accent); color: #fff;
+    padding: 0.85rem 1.8rem; border-radius: 4px;
+    text-decoration: none; font-size: 14px; font-weight: 500; letter-spacing: 0.03em;
+    transition: background 0.2s, transform 0.15s;
+  }
+  .btn-primary:hover { background: var(--accent-glow); transform: translateY(-1px); }
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    border: 1px solid var(--border); color: var(--muted);
+    padding: 0.85rem 1.8rem; border-radius: 4px;
+    text-decoration: none; font-size: 14px; letter-spacing: 0.03em;
+    transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-secondary:hover { border-color: var(--accent); color: var(--white); }
+  .hero-stats {
+    display: flex; gap: 3rem; margin-top: 4rem;
+    opacity: 0; animation: fadeUp 0.7s 0.7s forwards;
+  }
+  .stat-item { }
+  .stat-num { font-family: var(--serif); font-size: 2rem; font-weight: 700; color: var(--accent-glow); }
+  .stat-label { font-size: 12px; color: var(--muted); letter-spacing: 0.06em; }
+
+  /* ── SECTIONS ── */
+  section { padding: 6rem 3rem; }
+  .container { max-width: 1100px; margin: 0 auto; }
+  .section-label {
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.2em;
+    color: var(--accent); text-transform: uppercase;
+    margin-bottom: 0.75rem;
+  }
+  .section-title {
+    font-family: var(--serif); font-size: clamp(1.6rem, 3vw, 2.4rem);
+    font-weight: 700; margin-bottom: 1rem; line-height: 1.2;
+  }
+  .section-intro { color: var(--muted); max-width: 680px; margin-bottom: 3rem; font-size: 1.05rem; }
+  .divider { width: 48px; height: 2px; background: var(--accent); margin-bottom: 3rem; }
+
+  /* ── COMPANY UNDERSTANDING ── */
+  .company-section { background: var(--navy-mid); }
+  .company-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 2px; margin-top: 3rem; }
+  .company-card {
+    background: var(--navy); padding: 2rem 2.2rem;
+    border: 1px solid var(--border);
+  }
+  .company-card:first-child { border-radius: 8px 0 0 0; }
+  .company-card:nth-child(2) { border-radius: 0 8px 0 0; }
+  .company-card:nth-child(3) { border-radius: 0 0 0 8px; }
+  .company-card:last-child { border-radius: 0 0 8px 0; }
+  .company-card-icon {
+    width: 36px; height: 36px; border-radius: 6px;
+    background: rgba(59,130,246,0.1);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1rem; font-size: 1.2rem;
+  }
+  .company-card h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.5rem; }
+  .company-card p { font-size: 0.9rem; color: var(--muted); line-height: 1.6; }
+  .company-card .tag {
+    display: inline-block; margin-top: 0.75rem;
+    background: rgba(59,130,246,0.12); color: var(--accent-glow);
+    font-size: 11px; font-family: var(--mono); padding: 3px 10px; border-radius: 3px;
+  }
+  .initiative-banner {
+    margin-top: 2px;
+    background: linear-gradient(135deg, rgba(59,130,246,0.08), rgba(245,166,35,0.06));
+    border: 1px solid var(--border); border-radius: 0 0 8px 8px;
+    padding: 1.5rem 2.2rem;
+    display: flex; align-items: center; gap: 1.5rem;
+  }
+  .initiative-banner .ini-label { font-family: var(--mono); font-size: 11px; color: var(--gold); letter-spacing: 0.1em; }
+  .initiative-banner p { font-size: 0.9rem; color: var(--muted); }
+
+  /* ── PROBLEMS ── */
+  .problems-list { display: flex; flex-direction: column; gap: 1rem; }
+  .problem-item {
+    display: grid; grid-template-columns: 48px 1fr;
+    gap: 1.5rem; align-items: start;
+    padding: 1.8rem 2rem;
+    background: rgba(255,255,255,0.02);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .problem-item:hover { background: rgba(59,130,246,0.04); border-color: rgba(59,130,246,0.3); }
+  .problem-num {
+    font-family: var(--serif); font-size: 2.5rem; font-weight: 700;
+    color: rgba(59,130,246,0.2); line-height: 1;
+  }
+  .problem-body h3 { font-size: 1rem; font-weight: 500; margin-bottom: 0.4rem; }
+  .problem-body p { font-size: 0.88rem; color: var(--muted); line-height: 1.6; }
+  .problem-body .my-answer {
+    margin-top: 0.75rem; padding: 0.75rem 1rem;
+    background: rgba(59,130,246,0.06);
+    border-left: 2px solid var(--accent);
+    font-size: 0.85rem; color: var(--accent-glow);
+  }
+
+  /* ── WHY ME ── */
+  .why-me-section { background: var(--navy-mid); }
+  .metrics-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; }
+  .metric-card {
+    padding: 2rem 1.8rem;
+    border: 1px solid var(--border); border-radius: 8px;
+    background: var(--navy);
+    position: relative; overflow: hidden;
+    transition: border-color 0.2s;
+  }
+  .metric-card::before {
+    content: ''; position: absolute; top: 0; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, var(--accent), var(--gold));
+  }
+  .metric-card:hover { border-color: rgba(59,130,246,0.4); }
+  .metric-big { font-family: var(--serif); font-size: 2.4rem; font-weight: 700; color: var(--accent-glow); line-height: 1; margin-bottom: 0.5rem; }
+  .metric-card h3 { font-size: 0.9rem; font-weight: 500; margin-bottom: 0.5rem; }
+  .metric-card p { font-size: 0.82rem; color: var(--muted); line-height: 1.5; }
+
+  /* ── 30-60-90 ── */
+  .plan-section { }
+  .plan-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; }
+  .plan-card {
+    border: 1px solid var(--border); border-radius: 8px;
+    overflow: hidden;
+  }
+  .plan-header {
+    padding: 1.2rem 1.5rem;
+    background: rgba(59,130,246,0.08);
+    border-bottom: 1px solid var(--border);
+  }
+  .plan-header .phase { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.12em; }
+  .plan-header h3 { font-size: 1.05rem; font-weight: 600; margin-top: 0.2rem; }
+  .plan-body { padding: 1.5rem; }
+  .plan-body ul { list-style: none; display: flex; flex-direction: column; gap: 0.9rem; }
+  .plan-body li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.88rem; color: var(--muted); line-height: 1.5; }
+  .plan-body li::before { content: '→'; color: var(--accent); flex-shrink: 0; margin-top: 0.05rem; }
+  .plan-tools {
+    padding: 1rem 1.5rem;
+    border-top: 1px solid var(--border);
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+  }
+  .tool-tag {
+    font-family: var(--mono); font-size: 10px;
+    background: rgba(59,130,246,0.1); color: var(--accent-glow);
+    padding: 3px 8px; border-radius: 3px;
+  }
+
+  /* ── PROJECTS ── */
+  .projects-section { background: var(--navy-mid); }
+  .projects-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; }
+  .project-card {
+    border: 1px solid var(--border); border-radius: 8px;
+    background: var(--navy); padding: 2rem;
+    transition: border-color 0.2s, transform 0.2s;
+  }
+  .project-card:hover { border-color: rgba(59,130,246,0.4); transform: translateY(-2px); }
+  .project-tag {
+    font-family: var(--mono); font-size: 10px; letter-spacing: 0.1em;
+    color: var(--gold); background: rgba(245,166,35,0.08);
+    padding: 3px 8px; border-radius: 3px;
+    display: inline-block; margin-bottom: 1rem;
+  }
+  .project-card h3 { font-size: 1.05rem; font-weight: 600; margin-bottom: 0.75rem; }
+  .project-card .proj-section { margin-bottom: 0.75rem; }
+  .proj-label { font-family: var(--mono); font-size: 10px; color: var(--accent); letter-spacing: 0.1em; display: block; margin-bottom: 0.2rem; }
+  .project-card p { font-size: 0.86rem; color: var(--muted); line-height: 1.6; }
+  .proj-result {
+    margin-top: 1rem; padding: 0.8rem 1rem;
+    background: rgba(59,130,246,0.06);
+    border-radius: 4px;
+    font-size: 0.85rem; font-weight: 500; color: var(--accent-glow);
+  }
+
+  /* ── FIT ── */
+  .fit-section { }
+  .fit-table { width: 100%; border-collapse: collapse; }
+  .fit-table th {
+    text-align: left; padding: 0.75rem 1rem;
+    font-family: var(--mono); font-size: 11px; letter-spacing: 0.1em;
+    color: var(--accent); border-bottom: 1px solid var(--border);
+  }
+  .fit-table td { padding: 1rem; border-bottom: 1px solid rgba(255,255,255,0.04); font-size: 0.88rem; vertical-align: top; }
+  .fit-table td:first-child { color: var(--muted); width: 35%; }
+  .fit-table td:last-child { color: var(--white); }
+  .fit-badge { display: inline-block; background: rgba(34,197,94,0.12); color: #4ade80; font-size: 10px; font-family: var(--mono); padding: 2px 8px; border-radius: 3px; margin-left: 0.5rem; }
+
+  /* ── CTA ── */
+  .cta-section {
+    background: var(--navy-mid);
+    border-top: 1px solid var(--border);
+    text-align: center;
+  }
+  .cta-section .section-title { margin-bottom: 1rem; }
+  .cta-section p { color: var(--muted); max-width: 520px; margin: 0 auto 2.5rem; }
+  .cta-links { display: flex; justify-content: center; flex-wrap: wrap; gap: 1rem; }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 768px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 4rem 1.5rem; }
+    .hero { padding: 7rem 1.5rem 4rem; }
+    .company-grid { grid-template-columns: 1fr; }
+    .plan-grid { grid-template-columns: 1fr; }
+    .hero-stats { gap: 1.5rem; flex-wrap: wrap; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">DR × BD</div>
+  <div class="nav-links">
+    <a href="#company">Company</a>
+    <a href="#problems">Problems I'll Solve</a>
+    <a href="#plan">30-60-90</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-orb"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Business Data Analytics Intern — Channel Coverage · BD</p>
+    <h1 class="hero-title">
+      How Deepthi Rajesh Will Build the <em>Unified Channel Analytics Framework</em> BD Needs Right Now
+    </h1>
+    <p class="hero-sub">
+      BD completed a <strong>$18.8B merger</strong>. The #1 integration challenge: two sales organizations, two partner networks, zero unified data model. I've spent two years solving exactly this class of problem.
+    </p>
+    <div class="cta-row">
+      <a href="#plan" class="btn-primary">See My 30-60-90 Day Plan ↓</a>
+      <a href="#contact" class="btn-secondary">Let's Talk</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat-item">
+        <div class="stat-num">4.0</div>
+        <div class="stat-label">GPA at DePaul MSBA</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">$45K</div>
+        <div class="stat-label">Billing discrepancies found via Python automation</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">30%</div>
+        <div class="stat-label">Reporting cycle reduction, SQL + BigQuery</div>
+      </div>
+      <div class="stat-item">
+        <div class="stat-num">40%</div>
+        <div class="stat-label">Cross-team reporting errors eliminated post-ERP migration</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPANY UNDERSTANDING -->
+<section class="company-section" id="company">
+  <div class="container">
+    <p class="section-label">Company Understanding</p>
+    <h2 class="section-title">I've done my homework on BD.</h2>
+    <div class="divider"></div>
+    <p class="section-intro">
+      BD completed the spin-off of its Biosciences &amp; Diagnostic Solutions business into a combined entity with Waters Corporation on February 9, 2026 — creating a $6.5B life sciences and diagnostics leader targeting $9B by 2030. BD's commercial analytics team owns the integration. The data work starts now.
+    </p>
+
+    <div class="company-grid">
+      <div class="company-card">
+        <div class="company-card-icon">📡</div>
+        <h3>What BD's Biosciences &amp; Dx Business Does</h3>
+        <p>Analytical instruments (LC, mass spec), flow cytometry, and clinical diagnostics — enabling regulated, high-volume testing in pharma QC, food safety, clinical labs, and emerging markets. Over 70% recurring revenue from consumables and service contracts.</p>
+        <span class="tag">$40B Total Addressable Market</span>
+      </div>
+      <div class="company-card">
+        <div class="company-card-icon">⚡</div>
+        <h3>BD's Strategic Moment</h3>
+        <p>The transaction doubled BD's life sciences TAM to $40B but created two parallel commercial organizations. Q4 2025 earnings flagged "commercial execution" as the key integration lever. A centralized deal desk and channel coverage model are the immediate priority.</p>
+        <span class="tag">Integration Phase: Now</span>
+      </div>
+      <div class="company-card">
+        <div class="company-card-icon">🎯</div>
+        <h3>How They Win vs. Competitors</h3>
+        <p>Against Thermo Fisher, Danaher, and Agilent, BD's life sciences business competes through instrument replacement cycles (5–10 year lock-in), subscription software (Empower), and high-margin service attachment. The BD addition adds clinical dx and flow cytometry moats.</p>
+        <span class="tag">MaxPeak Premier + Empower SaaS</span>
+      </div>
+      <div class="company-card">
+        <div class="company-card-icon">📊</div>
+        <h3>Current Revenue Synergy Target</h3>
+        <p>The combined company targets $290M in revenue synergies by 2030, dependent on cross-selling BD's diagnostics customers to the instruments portfolio and vice versa. That cross-sell model only works with clean, unified partner data. That's this internship.</p>
+        <span class="tag">$290M Synergy Target by 2030</span>
+      </div>
+    </div>
+
+    <div class="initiative-banner">
+      <div>
+        <div class="ini-label">Recent Initiative</div>
+        <p>The Feb 2026 Q4 earnings call specifically cited "improving commercial execution through a centralized deal desk and expanding service plan attachment rates" as the company's top 2026 priority — directly aligned with this role's mandate.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROBLEMS I'LL SOLVE -->
+<section id="problems">
+  <div class="container">
+    <p class="section-label">Problems I'll Solve</p>
+    <h2 class="section-title">5 real challenges. 5 concrete answers.</h2>
+    <div class="divider"></div>
+    <div class="problems-list">
+      <div class="problem-item">
+        <div class="problem-num">01</div>
+        <div class="problem-body">
+          <h3>No unified partner dataset across the merged organizations</h3>
+          <p>BD and the combined entity now run two parallel CRMs, partner portals, and sales hierarchies. The merger created a data fragmentation crisis — you cannot cross-sell what you cannot see.</p>
+          <div class="my-answer">I migrated 5,000+ customer records from legacy systems into Snowflake at Choice Solutions, establishing centralized governance that cut cross-team reporting errors by 40%. I'll apply the same playbook here.</div>
+        </div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">02</div>
+        <div class="problem-body">
+          <h3>Partner selection criteria are subjective and inconsistent</h3>
+          <p>Without a scoring framework, sales teams rely on gut feel to choose channel partners — leading to underperforming relationships in emerging markets and missed cross-sell opportunities.</p>
+          <div class="my-answer">I'll build a quantitative partner scoring model in Python/SQL incorporating revenue potential, market coverage, product portfolio alignment, and competitive overlap — making selection defensible and repeatable.</div>
+        </div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">03</div>
+        <div class="problem-body">
+          <h3>Stakeholders across sales, marketing, and finance speak different data dialects</h3>
+          <p>KPI definitions diverge between teams (e.g., "installed base" means something different in instruments vs. diagnostics), causing alignment delays before every QBR.</p>
+          <div class="my-answer">At Choice Solutions, I led cross-functional KPI standardization that reduced alignment time by 50%. I'll replicate this — documenting agreed definitions and embedding them directly into the dashboard layer.</div>
+        </div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">04</div>
+        <div class="problem-body">
+          <h3>No real-time visibility into channel coverage gaps by geography or product line</h3>
+          <p>Without a coverage heatmap, commercial leaders cannot see which emerging markets lack representation or where the two commercial territories overlap, wasting both partners' capacity.</p>
+          <div class="my-answer">I'll build Power BI or Tableau dashboards visualizing coverage density by region, product category, and partner type — giving leadership a weekly "coverage score" they can act on immediately.</div>
+        </div>
+      </div>
+      <div class="problem-item">
+        <div class="problem-num">05</div>
+        <div class="problem-body">
+          <h3>Cross-sell model lacks the analytical foundation to reach $290M synergy target</h3>
+          <p>Revenue synergies only materialize if the right diagnostics customers are matched to the right instruments portfolio — and vice versa. That matching requires ML-assisted affinity modeling on the installed base.</p>
+          <div class="my-answer">I built regression models predicting Super Bowl ad engagement with 82% accuracy and DCF valuation models for a $144B market. I'll apply predictive modeling techniques to customer affinity scoring that directly feeds the cross-sell pipeline.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- WHY ME -->
+<section class="why-me-section" id="why-me">
+  <div class="container">
+    <p class="section-label">Why Me — Data-Backed</p>
+    <h2 class="section-title">Not claims. Evidence.</h2>
+    <div class="divider"></div>
+    <div class="metrics-grid">
+      <div class="metric-card">
+        <div class="metric-big">30%</div>
+        <h3>Reporting cycle compression</h3>
+        <p>SQL pipeline optimization + BigQuery workflows reduced a 45-min monthly process to 31 min, enabling real-time insights for 15+ stakeholders.</p>
+      </div>
+      <div class="metric-card">
+        <div class="metric-big">5K+</div>
+        <h3>Records migrated to Snowflake</h3>
+        <p>ERP migration project with full data governance framework — the exact scale of what a BD post-merger partner consolidation requires.</p>
+      </div>
+      <div class="metric-card">
+        <div class="metric-big">82%</div>
+        <h3>Predictive model accuracy</h3>
+        <p>Multiple regression models on 500+ ad campaigns (R + Python), directly applicable to customer affinity and cross-sell propensity scoring.</p>
+      </div>
+      <div class="metric-card">
+        <div class="metric-big">50%</div>
+        <h3>Stakeholder alignment time cut</h3>
+        <p>Led KPI standardization across product and finance teams — critical for a merger environment where two orgs must agree on definitions before any model can run.</p>
+      </div>
+      <div class="metric-card">
+        <div class="metric-big">$50K+</div>
+        <h3>Revenue optimization delivered</h3>
+        <p>Freelance analytics across 5 clients — including Tableau dashboards that drove 18% marketing ROI improvement through customer segmentation.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- 30-60-90 -->
+<section id="plan">
+  <div class="container">
+    <p class="section-label">30-60-90 Day Plan</p>
+    <h2 class="section-title">Week one has a deliverable. Week twelve has a model.</h2>
+    <div class="divider"></div>
+    <div class="plan-grid">
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="phase">Days 1–30</div>
+          <h3>Listen, Map, Audit</h3>
+        </div>
+        <div class="plan-body">
+          <ul>
+            <li>Interview stakeholders in sales, marketing, commercial excellence, and finance to map current partner data sources and pain points</li>
+            <li>Audit existing partner records in both legacy BD systems and the combined entity's data environment — document schema, coverage gaps, and data quality issues</li>
+            <li>Build a data inventory matrix: what we have, what we need, where it lives, and how clean it is</li>
+            <li>Deliver Week 1: a stakeholder requirements doc and data audit summary to align on model inputs</li>
+            <li>Begin integration of installed base, sales history, and market coverage data into a unified staging environment</li>
+          </ul>
+        </div>
+        <div class="plan-tools">
+          <span class="tool-tag">SQL</span>
+          <span class="tool-tag">Excel</span>
+          <span class="tool-tag">Python</span>
+          <span class="tool-tag">Snowflake</span>
+        </div>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="phase">Days 31–60</div>
+          <h3>Build, Score, Visualize</h3>
+        </div>
+        <div class="plan-body">
+          <ul>
+            <li>Develop partner scoring framework: weighted criteria across revenue potential, market coverage, product alignment, and cross-sell compatibility</li>
+            <li>Build v1 of the channel coverage model with Python — produce ranked partner lists by region and product category</li>
+            <li>Prototype dashboards in Power BI or Tableau: territory heatmaps, partner performance scores, and coverage gap visualizations</li>
+            <li>Present v1 model findings to cross-functional team; collect structured feedback to iterate assumptions</li>
+            <li>Document all data sources, logic, and assumptions in a scalable technical spec</li>
+          </ul>
+        </div>
+        <div class="plan-tools">
+          <span class="tool-tag">Python</span>
+          <span class="tool-tag">Power BI</span>
+          <span class="tool-tag">Tableau</span>
+          <span class="tool-tag">SQL</span>
+        </div>
+      </div>
+
+      <div class="plan-card">
+        <div class="plan-header">
+          <div class="phase">Days 61–90</div>
+          <h3>Deliver Impact</h3>
+        </div>
+        <div class="plan-body">
+          <ul>
+            <li>Refine model with stakeholder feedback; run validation tests against historical sales data to benchmark partner selection accuracy</li>
+            <li>Finalize executive-ready dashboard suite with weekly auto-refresh capability and clear KPI scorecards</li>
+            <li>Identify top 3 emerging market opportunities where coverage gaps present immediate cross-sell potential</li>
+            <li>Quantify expected revenue impact of top-ranked partner selections using DCF or scenario modeling</li>
+            <li>Deliver complete handoff package: model code, documentation, training guide, and recommendations — built to run without me</li>
+          </ul>
+        </div>
+        <div class="plan-tools">
+          <span class="tool-tag">Python</span>
+          <span class="tool-tag">R</span>
+          <span class="tool-tag">Power BI</span>
+          <span class="tool-tag">Excel</span>
+          <span class="tool-tag">Snowflake</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects-section" id="projects">
+  <div class="container">
+    <p class="section-label">Relevant Project Showcase</p>
+    <h2 class="section-title">Work that mirrors what BD needs right now.</h2>
+    <div class="divider"></div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <span class="project-tag">DIRECTLY RELEVANT</span>
+        <h3>ERP Data Migration → Snowflake (Choice Solutions)</h3>
+        <div class="proj-section">
+          <span class="proj-label">The Problem</span>
+          <p>5,000+ customer records fragmented across legacy systems, causing cross-team reporting errors and no single source of truth — identical to BD's current post-merger state.</p>
+        </div>
+        <div class="proj-section">
+          <span class="proj-label">My Approach</span>
+          <p>Designed end-to-end migration architecture, built data governance framework, validated record completeness, and established centralized Snowflake warehouse with standardized schemas.</p>
+        </div>
+        <div class="proj-result">Result: 40% reduction in cross-team reporting errors. Scalable framework still in use.</div>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tag">PREDICTIVE MODELING</span>
+        <h3>Super Bowl Ad ROI Analytics (DePaul University)</h3>
+        <div class="proj-section">
+          <span class="proj-label">The Problem</span>
+          <p>How do you allocate $5M in media spend across 500+ ad campaigns to maximize engagement ROI — without reliable historical benchmarks?</p>
+        </div>
+        <div class="proj-section">
+          <span class="proj-label">My Approach</span>
+          <p>Built multiple regression models in R and Python, visualized results in Tableau, identified that automotive/tech ads outperform consumer goods by 20% ROI. Translated into an executive-ready spend allocation strategy.</p>
+        </div>
+        <div class="proj-result">Result: 82% prediction accuracy. Model logic directly transferable to partner scoring and cross-sell propensity work.</div>
+      </div>
+
+      <div class="project-card">
+        <span class="project-tag">STAKEHOLDER ANALYTICS</span>
+        <h3>Automated Reporting & KPI Standardization (Choice Solutions)</h3>
+        <div class="proj-section">
+          <span class="proj-label">The Problem</span>
+          <p>Finance and operations teams used conflicting KPI definitions, causing delays before every quarterly review and undermining forecast credibility with 15+ stakeholders.</p>
+        </div>
+        <div class="proj-section">
+          <span class="proj-label">My Approach</span>
+          <p>Facilitated cross-functional workshops to align on definitions, then built BigQuery pipelines and Looker dashboards that embedded the agreed logic — eliminating manual reconciliation.</p>
+        </div>
+        <div class="proj-result">Result: 50% reduction in alignment time. 30% faster reporting cycle. Sustained for 12 months.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FIT TABLE -->
+<section id="fit">
+  <div class="container">
+    <p class="section-label">Point-by-Point Fit</p>
+    <h2 class="section-title">JD requirement → My evidence.</h2>
+    <div class="divider"></div>
+    <table class="fit-table">
+      <thead>
+        <tr>
+          <th>BD Requires</th>
+          <th>My Evidence</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Data extraction, cleansing, validation, and preparation</td>
+          <td>Validated 10,000+ weekly AP/AR transactions using Python + .NET; caught $45K in billing discrepancies. Built data audit framework at Choice Solutions. <span class="fit-badge">✓ Direct</span></td>
+        </tr>
+        <tr>
+          <td>SQL, Python, R or comparable analytical tools</td>
+          <td>SQL (BigQuery, Snowflake), Python (pandas, statsmodels), R (regression, hypothesis testing) — all used in professional settings, not just coursework. <span class="fit-badge">✓ All three</span></td>
+        </tr>
+        <tr>
+          <td>Dashboards and visualizations for stakeholders</td>
+          <td>Built Power BI, Tableau, and Looker dashboards for 15+ stakeholders across finance and operations. Created executive-ready PowerPoint decks with investment recommendations. <span class="fit-badge">✓ Direct</span></td>
+        </tr>
+        <tr>
+          <td>Cross-functional collaboration across sales, marketing, finance</td>
+          <td>KPI standardization project required sustained alignment across product management, finance, and operations — exactly the BD integration dynamic. <span class="fit-badge">✓ Direct</span></td>
+        </tr>
+        <tr>
+          <td>Data visualization tools (Power BI, Tableau)</td>
+          <td>Power BI at Big Bulls; Tableau with Google Analytics integration for freelance retail client; Looker at Choice Solutions. <span class="fit-badge">✓ All three</span></td>
+        </tr>
+        <tr>
+          <td>Interest in life sciences / diagnostics / healthcare</td>
+          <td>MSBA with finance concentration; studied the BD/Waters transaction as an investment case; independently researched the $40B life sciences tools market. <span class="fit-badge">✓ Engaged</span></td>
+        </tr>
+        <tr>
+          <td>Self-starter in matrixed, fast-paced environment</td>
+          <td>Managed 5 freelance clients simultaneously while employed full-time and completing coursework. Delivered end-to-end projects without supervision. <span class="fit-badge">✓ Demonstrated</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section" id="contact">
+  <div class="container" style="text-align:center;">
+    <p class="section-label">Let's Talk</p>
+    <h2 class="section-title">Let's discuss what I can build for BD in week one.</h2>
+    <p>I'm available May 18 and ready to start immediately. I'd love to discuss the channel coverage challenge and share how I'd approach the first stakeholder interviews.</p>
+    <div class="cta-links">
+      <a href="mailto:deepthi.singh66@gmail.com" class="btn-primary">deepthi.singh66@gmail.com</a>
+      <a href="https://linkedin.com/in/deepthi-rajesh" class="btn-secondary" target="_blank">LinkedIn Profile</a>
+      <a href="#" class="btn-secondary">Download Resume (PDF)</a>
+    </div>
+    <p style="margin-top:3rem; font-family:var(--mono); font-size:11px; color:var(--muted); letter-spacing:0.08em;">
+      DEEPTHI RAJESH · MSBA CANDIDATE, DEPAUL UNIVERSITY · GPA 4.0 · CHICAGO, IL
+    </p>
+  </div>
+</section>
+
+</body>
+</html>
